@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "Triggering JitPack build"
           
-          PACKAGES_URL="https://jitpack.io/org/ethelred/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
+          PACKAGES_URL="https://jitpack.io/org/ethelred/ethelred-rewrite/${GITHUB_REF#refs/tags/}/"
           PACKAGES_FILE="packages.txt"
           touch ${PACKAGES_FILE}
           # Try the URL 6 times before failing

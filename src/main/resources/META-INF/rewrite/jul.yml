@@ -1,0 +1,26 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.ethelred.rewrite.java.logging.jul.JulToLog4j2
+displayName: migrate java util logging to Log4j2
+description: TODO
+tags:
+  - logging
+  - log4j
+recipeList:
+  - org.ethelred.rewrite.java.logging.jul.StaticLoggerField:
+      loggerName: LOGGER
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: java.util.logging.LogManager getLogger(String)
+      argumentIndex: 0
+  - org.ethelred.rewrite.java.logging.jul.LevelMapper:
+      levelMap:
+        SEVERE: ERROR
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: java.util.logging.Logger
+      newFullyQualifiedTypeName: org.apache.logging.log4j.Logger
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: java.util.logging.LogManager
+      newFullyQualifiedTypeName: org.apache.logging.log4j.LogManager
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: java.util.logging.Level
+      newFullyQualifiedTypeName: org.apache.logging.log4j.Level

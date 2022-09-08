@@ -1,0 +1,53 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id 'org.openrewrite.rewrite' version 'latest.release'
+}
+
+rewrite {
+    activeRecipe("org.openrewrite.java.format.AutoFormat", "org.openrewrite.java.cleanup.Cleanup")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:latest.release")
+    annotationProcessor("org.projectlombok:lombok:latest.release")
+
+    implementation("org.openrewrite:rewrite-java:latest.release")
+    implementation("org.openrewrite:rewrite-maven:latest.release")
+    runtimeOnly("org.openrewrite:rewrite-java-11:latest.release")
+
+    implementation 'org.openrewrite.recipe:rewrite-logging-frameworks:latest.release'
+
+    testImplementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    testImplementation("org.jetbrains.kotlin:kotlin-reflect")
+    testImplementation("org.jetbrains.kotlin:kotlin-stdlib")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:latest.release")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
+
+    testImplementation("org.openrewrite:rewrite-test:latest.release")
+    testImplementation("org.openrewrite:rewrite-java-tck:latest.release")
+
+    testImplementation("org.assertj:assertj-core:latest.release")
+
+    testRuntimeOnly("org.openrewrite:rewrite-java-11:latest.release")
+    testRuntimeOnly("org.openrewrite:rewrite-java-8:latest.release")
+    testRuntimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin:latest.release")
+    testRuntimeOnly("commons-logging:commons-logging:1.2")
+    testRuntimeOnly("ch.qos.logback:logback-classic:1.2.11")
+
+    testRuntimeOnly("org.apache.logging.log4j:log4j-core:2.+")
+    testRuntimeOnly("org.apache.logging.log4j:log4j-api:2.+")
+
+    testRuntimeOnly("org.slf4j:slf4j-api:1.+")
+    testRuntimeOnly("log4j:log4j:1.+")
+}
+
+test {
+    useJUnitPlatform()
+}

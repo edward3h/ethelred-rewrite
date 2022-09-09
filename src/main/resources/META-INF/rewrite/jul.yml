@@ -9,6 +9,8 @@ tags:
 recipeList:
   - org.ethelred.rewrite.java.logging.jul.StaticLoggerField:
       loggerName: LOGGER
+  - org.ethelred.rewrite.java.logging.jul.FixNullMessage:
+      replacement: Unknown
   - org.openrewrite.java.DeleteMethodArgument:
       methodPattern: java.util.logging.LogManager getLogger(String)
       argumentIndex: 0

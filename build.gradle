@@ -24,6 +24,7 @@ java {
 }
 
 dependencies {
+    implementation 'commons-lang:commons-lang:2.6'
     compileOnly("org.projectlombok:lombok:latest.release")
     annotationProcessor("org.projectlombok:lombok:latest.release")
 
@@ -32,6 +33,7 @@ dependencies {
     runtimeOnly("org.openrewrite:rewrite-java-11:latest.release")
 
     implementation 'org.openrewrite.recipe:rewrite-logging-frameworks:latest.release'
+
 
     testImplementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     testImplementation("org.jetbrains.kotlin:kotlin-reflect")

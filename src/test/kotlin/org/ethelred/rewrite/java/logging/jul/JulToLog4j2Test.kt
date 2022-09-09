@@ -64,4 +64,52 @@ class JulToLog4j2Test : JavaRecipeTest {
             
         """.trimIndent()
     )
+
+    @Test
+    fun example2() = assertChanged(
+        before = """
+            package test;
+            import java.util.logging.Level;
+            import java.util.logging.Logger;
+            
+            public class Test {
+                public void trySomething() {
+                    try {
+                        doSomething();
+                    }
+                    catch(Exception e) {
+                        Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, e);
+                    }
+                }
+                
+                public void doSomething() {
+                    // not really
+                }
+            }
+        """.trimIndent(),
+        after = """
+            package test;
+            import org.apache.logging.log4j.Level;
+            import org.apache.logging.log4j.LogManager;
+            import org.apache.logging.log4j.Logger;
+            
+            public class Test {
+                private static final Logger LOGGER = LogManager.getLogger();
+            
+                public void trySomething() {
+                    try {
+                        doSomething();
+                    }
+                    catch(Exception e) {
+                        LOGGER.log(Level.ERROR, "Unknown", e);
+                    }
+                }
+                
+                public void doSomething() {
+                    // not really
+                }
+            }
+            
+        """.trimIndent()
+    )
 }

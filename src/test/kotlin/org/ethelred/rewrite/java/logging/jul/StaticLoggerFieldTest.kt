@@ -81,4 +81,58 @@ class StaticLoggerFieldTest : JavaRecipeTest {
         """
     )
 
+    @Test
+    fun testUseFieldNotVariable() = assertChanged(
+        recipe = StaticLoggerField("LOGGER"),
+        before = """
+            import java.util.logging.Logger;
+            import java.util.logging.Level;
+            
+            public class Main {
+                public void run() {
+                    try {
+                        System.out.println("something");
+                    }
+                    catch (Exception e)
+                    {
+                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+                    }
+                }
+            
+                public static void main(String[] args) {
+                    Logger root = Logger.getLogger("");
+                    root.setLevel(Level.ALL);
+                    Main app = new Main();
+                    app.run();
+                }
+            }
+        """.trimIndent(),
+        after = """
+            import java.util.logging.Logger;
+            import java.util.logging.Level;
+            import java.util.logging.LogManager;
+            
+            public class Main {
+                private static final Logger LOGGER = LogManager.getLogger("Main");
+            
+                public void run() {
+                    try {
+                        System.out.println("something");
+                    }
+                    catch (Exception e)
+                    {
+                         LOGGER.log(Level.SEVERE, null, e);
+                    }
+                }
+            
+                public static void main(String[] args) {
+                    Logger root = Logger.getLogger("");
+                    root.setLevel(Level.ALL);
+                    Main app = new Main();
+                    app.run();
+                }
+            }
+        """.trimIndent()
+    )
+
 }

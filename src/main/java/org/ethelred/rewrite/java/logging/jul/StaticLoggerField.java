@@ -89,9 +89,9 @@ public class StaticLoggerField extends Recipe {
                     }
 
                     m = m.withSelect(new J.Identifier(randomId(),
-                            m.getSelect() == null ?
-                                    Space.EMPTY :
-                                    m.getSelect().getPrefix(),
+                            m.getSelect() == null
+                                    ? Space.EMPTY
+                                    : m.getSelect().getPrefix(),
                             Markers.EMPTY,
                             variableName,
                             variableType,
@@ -99,7 +99,7 @@ public class StaticLoggerField extends Recipe {
                     ).withMethodType(methodType);
 
                 } else {
-                    doAfterVisit(AddLogger.addLogger(clazz, loggingFramework, loggerName == null ? "LOGGER" : loggerName));
+                    doAfterVisit(AddLogger.addJulLogger(clazz, loggerName == null ? "LOGGER" : loggerName));
                     doAfterVisit(this);
                 }
                 return m;

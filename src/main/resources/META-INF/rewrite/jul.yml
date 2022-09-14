@@ -17,6 +17,10 @@ recipeList:
   - org.ethelred.rewrite.java.logging.jul.LevelMapper:
       levelMap:
         SEVERE: ERROR
+        WARNING: WARN
+        FINE: DEBUG
+        FINER: TRACE
+        FINEST: TRACE
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: java.util.logging.Logger
       newFullyQualifiedTypeName: org.apache.logging.log4j.Logger
@@ -26,3 +30,5 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: java.util.logging.Level
       newFullyQualifiedTypeName: org.apache.logging.log4j.Level
+  - org.ethelred.rewrite.java.logging.log4j.LogToNamedMethod
+  - org.openrewrite.java.logging.log4j.ParameterizedLogging

@@ -53,7 +53,7 @@ class JulToLog4j2Test : JavaRecipeTest {
                         doSomething();
                     }
                     catch(Exception e) {
-                        LOGGER.log(Level.ERROR, "Error", e);
+                        LOGGER.error("Error", e);
                     }
                 }
                 
@@ -101,7 +101,7 @@ class JulToLog4j2Test : JavaRecipeTest {
                         doSomething();
                     }
                     catch(Exception e) {
-                        LOGGER.log(Level.ERROR, "Unknown", e);
+                        LOGGER.error("Unknown", e);
                     }
                 }
                 

@@ -8,7 +8,7 @@ plugins{
         }
 
 group = 'org.ethelred'
-versiongitVersion()
+version gitVersion()
 
 rewrite{
         
@@ -76,7 +76,7 @@ publishing{
                     
                         myLibrary(MavenPublication) {
                                 
-                                    fromcomponents.java
+                                    from components.java
                                 }
                     }
         }

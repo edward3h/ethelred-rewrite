@@ -36,7 +36,7 @@ dependencies{
             annotationProcessor("org.projectlombok:lombok:latest.release")
             
 
-                    def rewriteVersion = "7.30.0-SNAPSHOT"
+                    def rewriteVersion = "7.40.8"
             implementation("org.openrewrite:rewrite-java:${rewriteVersion}")
             implementation("org.openrewrite:rewrite-maven:${rewriteVersion}")
             runtimeOnly("org.openrewrite:rewrite-java-11:${rewriteVersion}")

@@ -61,7 +61,7 @@ dependencies{
             testRuntimeOnly("org.openrewrite:rewrite-java-8:latest.release")
             testRuntimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin:latest.release")
             testRuntimeOnly("commons-logging:commons-logging:1.2")
-            testRuntimeOnly("ch.qos.logback:logback-classic:1.4.0")
+            testRuntimeOnly("ch.qos.logback:logback-classic:1.5.11")
 
             testRuntimeOnly("org.apache.logging.log4j:log4j-core:2.+")
             testRuntimeOnly("org.apache.logging.log4j:log4j-api:2.+")
